@@ -14,7 +14,7 @@ RESPONSE_TEMPLATE = (
     "HTTP/1.1 200 OK\r\n"
     "host-id:0123456789AB\r\n"
     "host-type:PS4\r\n"
-    "host-name:MyPS4\r\n"
+    "host-name:UUPS4\r\n"
     "host-request-port:{port}\r\n"
     "device-discovery-protocol-version:00020020\r\n"
     "system-version:07020001\r\n"
