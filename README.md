@@ -14,3 +14,7 @@ services:
    ```bash
 docker compose up
    ```
+日志
+   ```bash
+docker logs -f uups4
+   ```
