@@ -1,16 +1,18 @@
-# 使用最小Alpine镜像
-FROM alpine:3.18
+# 使用最新稳定版Alpine镜像
+FROM alpine:3.19
 
-# 安装Python3（不安装pip和额外依赖）
-RUN apk add --no-cache python3 && \
-    # 创建python命令别名
-    ln -s /usr/bin/python3 /usr/bin/python
+# 安装Python3并清理缓存（合并所有操作到单层）
+RUN apk update && \
+    apk add --no-cache python3 && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
+    rm -rf /var/cache/apk/*
 
 # 设置工作目录
 WORKDIR /app
 
 # 复制脚本并设置权限
-COPY --chmod=755 uups4.py .
+COPY uups4.py .
+RUN chmod +x uups4.py
 
 # 暴露UDP端口
 EXPOSE 987/udp
