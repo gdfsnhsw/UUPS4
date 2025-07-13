@@ -1,10 +1,14 @@
-# 使用最新稳定版Alpine镜像
-FROM alpine:3.19
+# 使用更稳定的Alpine版本
+FROM alpine:3.18
 
-# 安装Python3并清理缓存（合并所有操作到单层）
-RUN apk update && \
+# 安装Python3 - 使用可靠的镜像源并添加重试机制
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/main" > /etc/apk/repositories && \
+    echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /etc/apk/repositories && \
+    apk add --no-cache --virtual .build-deps curl && \
+    for i in $(seq 1 5); do apk update && break || sleep 5; done && \
     apk add --no-cache python3 && \
-    ln -s /usr/bin/python3 /usr/bin/python && \
+    ln -sf /usr/bin/python3 /usr/bin/python && \
+    apk del .build-deps && \
     rm -rf /var/cache/apk/*
 
 # 设置工作目录
