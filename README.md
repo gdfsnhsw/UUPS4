@@ -1,6 +1,6 @@
 # UUPS4
 1.创建docker-compose.yml
-   ```bash
+    ```yaml
 services:
   uups4:
     image: gdfsnhsw/uups4:latest
