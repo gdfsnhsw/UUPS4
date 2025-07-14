@@ -4,12 +4,12 @@
    ```bash
    services:
      uups4:
-     image: gdfsnhsw/uups4:latest
-     container_name: uups4
-     restart: always
-     environment:
-       - TZ=Asia/Shanghai
-     network_mode: "host"
+       image: gdfsnhsw/uups4:latest
+       container_name: uups4
+       restart: always
+       environment:
+         - TZ=Asia/Shanghai
+       network_mode: "host"
    ```
     
 2.使用 Docker Compose 启动插件
